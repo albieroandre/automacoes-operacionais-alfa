@@ -169,6 +169,7 @@ javascript:(function(){
   copiar(`${smp}\t${cav}\t${car}\t${ori.trim()}\t${des.trim()}`);
   alert('Dados da SMP copiados!');
 })();
+
 </pre>
 
 <button onclick="copiar('smp')">📋 Copiar script</button>
