@@ -151,15 +151,23 @@ last=cur;
 
 <pre id="smp">
 javascript:(function(){
-function copiar(t){navigator.clipboard.writeText(t);}
-const b=document.body.innerText;
-const smp=(b.match(/Dados SMP\s*-\s*(\d+)/)||[])[1]||'';
-const cav=(b.match(/Cavalo\s*([A-Z0-9]+)/)||[])[1]||'';
-const car=(b.match(/Carreta\s*([A-Z0-9]+)/)||[])[1]||'';
-const ori=(b.match(/Cidade \/ UF \/ País Origem\s*([A-Z]+)/)||[])[1]||'';
-const des=(b.match(/Cidade \/ UF \/ País Destino\s*([A-Z]+)/)||[])[1]||'';
-copiar(`${smp}\t${cav}\t${car}\t${ori}\t${des}`);
-alert('Dados da SMP copiados!');
+  function copiar(t){navigator.clipboard.writeText(t);}
+  const b = document.body.innerText;
+
+  const smp = (
+    b.match(/Dados SMP[\s\S]*?(\d{5,})/) ||
+    b.match(/SMP[:\s-]*?(\d{5,})/) ||
+    []
+  )[1] || '';
+
+  const cav = (b.match(/Cavalo\s*([A-Z0-9]+)/)||[])[1]||'';
+  const car = (b.match(/Carreta\s*([A-Z0-9]+)/)||[])[1]||'';
+
+  const ori = (b.match(/Cidade \/ UF \/ País Origem\s*([A-Z\s]+)/)||[])[1]||'';
+  const des = (b.match(/Cidade \/ UF \/ País Destino\s*([A-Z\s]+)/)||[])[1]||'';
+
+  copiar(`${smp}\t${cav}\t${car}\t${ori.trim()}\t${des.trim()}`);
+  alert('Dados da SMP copiados!');
 })();
 </pre>
 
